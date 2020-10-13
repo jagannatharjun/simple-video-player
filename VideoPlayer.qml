@@ -62,23 +62,25 @@ Item {
     MouseArea {
         id: mouse
 
+        // mouse position on last onPositionChanged handling, used to
+        // calculate move cords in between of mouse position change
         property var _lastPressed: null
 
         anchors.fill: parent
 
         onWheel: function (wheel) {
-            if (wheel.modifiers != Qt.ControlModifier)
+            if (wheel.modifiers !== Qt.ControlModifier)
                 return
 
-            wheel.accepted = true
             video.zoom(wheel.x, wheel.y, wheel.angleDelta.y > 0)
+            wheel.accepted = true
         }
 
         onPositionChanged: function (mouse) {
-            if (mouse.buttons != Qt.LeftButton)
+            if (mouse.buttons !== Qt.LeftButton)
                 return
 
-            if (_lastPressed != null) {
+            if (_lastPressed !== null) {
                 video.move(mouse.x - _lastPressed.x, mouse.y - _lastPressed.y)
             }
 
@@ -87,6 +89,7 @@ Item {
         }
 
         onReleased: {
+            // reset _lastPressed
             _lastPressed = null
         }
     }
