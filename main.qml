@@ -35,8 +35,15 @@ Window {
                     margins: 4
                 }
 
+                spacing: 8
+
                 Button {
-                    implicitWidth: 50
+                    text: "Open File"
+                    onClicked: fileDialog.open()
+                }
+
+                Button {
+                    implicitWidth: 60
 
                     text: {
                         if (player.isPaused)
@@ -68,4 +75,22 @@ Window {
         }
     }
 
+    VideoFileDialog {
+        id: fileDialog
+
+        onOpenFileName: {
+            player.playSource(selectedFile)
+        }
+    }
+
+    DropArea {
+        anchors.fill: parent
+        onDropped: function (event) {
+            if (!event.hasUrls)
+                return
+
+            player.playSource(event.urls[0])
+            event.accepted = true
+        }
+    }
 }
