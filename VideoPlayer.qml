@@ -3,10 +3,13 @@ import QtMultimedia
 
 Item {
 
+    // forward video properties
     property alias playbackState: video.playbackState
     property alias duration: video.duration
     property alias position: video.position
     property alias source: video.source
+    property alias error: video.error
+    property alias errorString: video.errorString
 
     readonly property bool isPlaying: playbackState === MediaPlayer.PlayingState
     readonly property bool isPaused: playbackState === MediaPlayer.PausedState
@@ -21,10 +24,12 @@ Item {
         video.play()
     }
 
+
+    // since this component has transformations we don't make it
+    // root component since that will cause interference with
+    // all children and our own MouseArea won't work then
     Video {
         id: video
-
-        source: "file:///D:/Youtube-Videos/1 - Why Alien Life Would be our Doom - The Great Filter.mp4"
 
         anchors.fill: parent
 
@@ -36,6 +41,7 @@ Item {
                 id: zoomTranslate
             }
         ]
+
         Component.onCompleted: video.play()
 
         function zoom(x, y, zoomin) {
