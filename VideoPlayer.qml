@@ -1,8 +1,17 @@
-import QtQuick 2.15
-import QtMultimedia 5.15
+import QtQuick
+import QtMultimedia
 
 Item {
-    anchors.fill: parent
+
+    property alias playbackState: video.playbackState
+
+    readonly property bool isPlaying: playbackState === MediaPlayer.PlayingState
+    readonly property bool isPaused: playbackState === MediaPlayer.PausedState
+    readonly property bool isStopped: playbackState === MediaPlayer.StoppedState
+
+    function play() { video.play() }
+    function pause() { video.pause() }
+    function stop() { video.stop() }
 
     Video {
         id: video
