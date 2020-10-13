@@ -52,6 +52,10 @@ set_target_properties(simple-video-player PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
+if (UNIX AND NOT APPLE)
+  target_link_libraries(simple-video-player PRIVATE X11)
+endif()
+
 install(TARGETS simple-video-player
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
