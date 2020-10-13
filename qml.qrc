@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>VideoPlayer.qml</file>
+    </qresource>
+    <qresource prefix="/Widgets">
+        <file>widgets/Button.qml</file>
+    </qresource>
+</RCC>
