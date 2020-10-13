@@ -1,9 +1,10 @@
 # A Simple Video Player
 
-A simple video player using Qt framework
+A simple video player using Qt framework. Supports seeking, zooming and moving the video around. When video is playing it also prevents system from sleeping (Windows, Linux)
 
 ## Demo
 
 
-https://user-images.githubusercontent.com/34717789/217595405-0f5bb09d-a6e2-41e0-93ec-aea8c6c38226.mp4
+
+https://user-images.githubusercontent.com/34717789/217598673-644056da-f334-41d1-8cfe-10d8002b780c.mp4
 
