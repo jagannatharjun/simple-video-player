@@ -11,6 +11,7 @@ Window {
     visible: true
     title: qsTr("Video Player")
 
+    // Main Layout
     ColumnLayout {
         anchors.fill: parent
         spacing: 0
@@ -26,6 +27,8 @@ Window {
             }
         }
 
+
+        // bottom controls rectangle
         Rectangle {
             color: "black"
 
@@ -40,33 +43,38 @@ Window {
                     margins: 4
                 }
 
-                spacing: 8
+                spacing: 10
 
                 Button {
+                    // open file button
+
                     text: "Open File"
+
                     onClicked: fileDialog.open()
                 }
 
                 Button {
-                    implicitWidth: 60
+                    // play button
 
-                    text: {
-                        if (player.isPaused)
-                            return "Play"
-                        else if (player.isPlaying)
-                            return "Pause"
-                        return "Stopped"
-                    }
+                    text: "Play"
 
-                    onClicked: {
-                        if (player.isPlaying)
-                            player.pause()
-                        else
-                            player.play()
-                    }
+                    enabled: !player.isPlaying // handles isStopped case as well
+
+                    onClicked: player.play()
+                }
+
+                Button {
+                    // pause button
+
+                    text: "Pause"
+
+                    enabled: player.isPlaying
+
+                    onClicked: player.pause()
                 }
 
                 Slider {
+                    // playback slider
                     Layout.fillHeight: true
                     Layout.fillWidth: true
 
@@ -80,6 +88,9 @@ Window {
         }
     }
 
+
+    // utility classes
+
     VideoFileDialog {
         id: fileDialog
 
@@ -89,12 +100,15 @@ Window {
     }
 
     DropArea {
+        // handles files drop from explorer
         anchors.fill: parent
         onDropped: function (event) {
-            if (!event.hasUrls)
+            if (!event.hasUrls || event.urls.lenght < 1)
                 return
 
+            // We don't support playlist, so only add first url and ignore rest
             player.playSource(event.urls[0])
+
             event.accepted = true
         }
     }

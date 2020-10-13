@@ -39,6 +39,9 @@ Rectangle {
         font.pixelSize: 18
 
         color: {
+            if (!root.enabled)
+                return "#c3c3c3c3" // light gray
+
             if (hovered)
                 return "orange"
             return "white"
