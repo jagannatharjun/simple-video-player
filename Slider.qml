@@ -18,7 +18,7 @@ Item {
         width: parent.width
 
         radius: root.radius
-        color: "#C0C0C0"
+        color: Qt.darker(progressRect.color, 2)
 
         Rectangle {
             id: progressRect
@@ -52,10 +52,15 @@ Item {
 
             anchors.fill: parent
 
+            // handles drag for "handle"
             drag.target: handle
             drag.axis: Drag.XAxis
+
+            // limit drag area to sliderBg
             drag.minimumX: 0
             drag.maximumX: sliderBg.width
+
+            // this keeps handle always under mouse
             drag.threshold: 0
 
             acceptedButtons: Qt.LeftButton
@@ -67,6 +72,7 @@ Item {
     }
 
     Binding {
+        // bind handle x to progress, but allow it to move when dragging
         target: handle
         property: "x"
         value: (sliderBg.width * root.progress - handle.width / 2)
