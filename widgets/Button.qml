@@ -36,7 +36,7 @@ Rectangle {
         id: label
 
         anchors.centerIn: parent
-        font.pixelSize: 24
+        font.pixelSize: 18
 
         color: {
             if (hovered)
