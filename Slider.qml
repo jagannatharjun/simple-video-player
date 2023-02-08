@@ -6,6 +6,8 @@ Item {
     property real radius: 4
     property real progress: .5
 
+    // when is slider is dragged, this is called to request
+    // to change the progress
     signal requestUpdateProgress(real newProgress)
 
     Rectangle {
@@ -41,7 +43,6 @@ Item {
             onXChanged: {
                 if (mouse.drag.active)
                     root.requestUpdateProgress((x / sliderBg.width))
-
             }
         }
 
@@ -55,6 +56,7 @@ Item {
             drag.axis: Drag.XAxis
             drag.minimumX: 0
             drag.maximumX: sliderBg.width
+            drag.threshold: 0
 
             acceptedButtons: Qt.LeftButton
             onClicked: function (mouse) {
