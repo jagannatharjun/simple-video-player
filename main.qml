@@ -121,7 +121,7 @@ Window {
         // handles files drop from explorer
         anchors.fill: parent
         onDropped: function (event) {
-            if (!event.hasUrls || event.urls.lenght < 1)
+            if (!event.hasUrls || event.urls.length < 1)
                 return
 
             // We don't support playlist, so only add first url and ignore rest
