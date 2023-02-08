@@ -9,7 +9,7 @@ Window {
     width: 640
     height: 480
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Video Player")
 
     ColumnLayout {
         anchors.fill: parent
@@ -27,10 +27,10 @@ Window {
         }
 
         Rectangle {
-            color: "blue"
+            color: "black"
 
             Layout.fillWidth: true
-            height: 40
+            height: 44
 
             RowLayout {
                 anchors {
