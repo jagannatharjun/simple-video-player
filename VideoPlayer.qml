@@ -4,6 +4,8 @@ import QtMultimedia
 Item {
 
     property alias playbackState: video.playbackState
+    property alias duration: video.duration
+    property alias position: video.position
 
     readonly property bool isPlaying: playbackState === MediaPlayer.PlayingState
     readonly property bool isPaused: playbackState === MediaPlayer.PausedState

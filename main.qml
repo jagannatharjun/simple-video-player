@@ -36,6 +36,8 @@ Window {
                 }
 
                 Button {
+                    implicitWidth: 50
+
                     text: {
                         if (player.isPaused)
                             return "Play"
@@ -49,6 +51,17 @@ Window {
                             player.pause()
                         else
                             player.play()
+                    }
+                }
+
+                Slider {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+
+                    progress: player.position / player.duration
+
+                    onRequestUpdateProgress: function (newProgress) {
+                        player.position = newProgress * player.duration
                     }
                 }
             }
