@@ -25,6 +25,24 @@ Window {
             onPlaybackStateChanged: {
                 SystemLockManager.preventSystemLock(player.isPlaying)
             }
+
+            Text {
+                // caption
+                anchors.fill: parent
+                font.pixelSize: 32
+                wrapMode: Text.Wrap
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                visible: !player.isPlaying
+
+                text: {
+                    var s = ""
+                    if (player.error != 0)
+                        s += "Failed to play '" + player.source + "', Error - " + player.errorString + "\n\n"
+
+                    return s + "Drop Files to play or click 'Open File'"
+                }
+            }
         }
 
 
@@ -58,7 +76,7 @@ Window {
 
                     text: "Play"
 
-                    enabled: !player.isPlaying // handles isStopped case as well
+                    enabled: !player.isPlaying && player.source.length > 0 // handles isStopped case as well
 
                     onClicked: player.play()
                 }
