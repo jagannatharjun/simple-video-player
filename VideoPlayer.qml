@@ -57,6 +57,7 @@ Item {
             zoomTranslate.x += x
             zoomTranslate.y += y
         }
+
     }
 
     MouseArea {
@@ -91,6 +92,29 @@ Item {
         onReleased: {
             // reset _lastPressed
             _lastPressed = null
+        }
+    }
+
+    PinchHandler {
+        // previous active scale during press
+        property var _previousScale: null
+
+        target: null
+
+        onRotationChanged: video.rotation = rotation
+        onTranslationChanged: video.move(translation.x, translation.y)
+        onActiveScaleChanged: {
+            if (_previousScale != null)
+                video.zoom(centroid.position.x, centroid.position.y, activeScale - _previousScale)
+
+            _previousScale = activeScale
+        }
+
+        onActiveChanged: {
+            if (active)
+                _previousScale = 1
+            else
+                _previousScale = null
         }
     }
 }
