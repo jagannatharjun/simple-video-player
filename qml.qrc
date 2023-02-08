@@ -4,6 +4,6 @@
         <file>VideoPlayer.qml</file>
     </qresource>
     <qresource prefix="/Widgets">
-        <file>widgets/Button.qml</file>
+        <file alias="Button.qml">widgets/Button.qml</file>
     </qresource>
 </RCC>
