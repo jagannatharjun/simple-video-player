@@ -3,6 +3,7 @@ import QtQuick.Window 2.15
 import QtQuick.Layouts 1.0
 
 import "Widgets"
+import SystemLockManager
 
 Window {
     width: 640
@@ -19,6 +20,10 @@ Window {
 
             Layout.fillHeight: true
             Layout.fillWidth: true
+
+            onPlaybackStateChanged: {
+                SystemLockManager.preventSystemLock(player.isPlaying)
+            }
         }
 
         Rectangle {

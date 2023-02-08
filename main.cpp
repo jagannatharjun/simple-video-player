@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
+#include "systemlockmanager.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,7 +16,10 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-//    qmlRegister
+
+    SystemLockManager systemLockManager;
+    qmlRegisterSingletonInstance("SystemLockManager", 0, 1
+                                 , "SystemLockManager", &systemLockManager);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
