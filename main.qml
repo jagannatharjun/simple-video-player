@@ -33,7 +33,7 @@ Window {
                 wrapMode: Text.Wrap
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
-                visible: !player.isPlaying
+                visible: player.isStopped
 
                 text: {
                     var s = ""
@@ -58,10 +58,10 @@ Window {
                     left: parent.left
                     right: parent.right
                     verticalCenter: parent.verticalCenter
-                    margins: 4
+                    margins: 12
                 }
 
-                spacing: 10
+                spacing: 12
 
                 Button {
                     // open file button
@@ -76,7 +76,7 @@ Window {
 
                     text: "Play"
 
-                    enabled: !player.isPlaying && player.source.length > 0 // handles isStopped case as well
+                    enabled: !player.isPlaying && player.source.toString().length > 0 // handles isStopped case as well
 
                     onClicked: player.play()
                 }
