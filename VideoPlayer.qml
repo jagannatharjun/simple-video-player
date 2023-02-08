@@ -6,6 +6,7 @@ Item {
     property alias playbackState: video.playbackState
     property alias duration: video.duration
     property alias position: video.position
+    property alias source: video.source
 
     readonly property bool isPlaying: playbackState === MediaPlayer.PlayingState
     readonly property bool isPaused: playbackState === MediaPlayer.PausedState
@@ -15,8 +16,14 @@ Item {
     function pause() { video.pause() }
     function stop() { video.stop() }
 
+    function playSource(filename) {
+        video.source = filename
+        video.play()
+    }
+
     Video {
         id: video
+
         source: "file:///D:/Youtube-Videos/1 - Why Alien Life Would be our Doom - The Great Filter.mp4"
 
         anchors.fill: parent

@@ -6,5 +6,6 @@
     <qresource prefix="/Widgets">
         <file alias="Button.qml">widgets/Button.qml</file>
         <file>Slider.qml</file>
+        <file>VideoFileDialog.qml</file>
     </qresource>
 </RCC>
